@@ -364,6 +364,13 @@ public final class PlatformDependent {
         return PlatformDependent0.directBufferAddress(buffer);
     }
 
+    public static ByteBuffer directBuffer(long memoryAddress, int size) {
+        if (PlatformDependent0.hasDirectBufferNoCleanerConstructor()) {
+            return PlatformDependent0.newDirectBuffer(memoryAddress, size);
+        }
+        throw new UnsupportedOperationException("Not supported on this platform");
+    }
+
     public static Object getObject(Object object, long fieldOffset) {
         return PlatformDependent0.getObject(object, fieldOffset);
     }
